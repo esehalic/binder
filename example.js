@@ -25,4 +25,4 @@ $.binder.add(function () {
 
 });
 
-$.binder.ajax(); // if you want auto ajax support
+$.binder.ajax(true); // if you want auto ajax support

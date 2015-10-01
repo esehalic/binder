@@ -7,6 +7,10 @@
                 event_name = identity;
                 identity = $(this).selector;
             }
+            if ($.isFunction(identity)) { // if $('thing').binder(callback);
+                handler = identity;
+                identity = $(this).selector;
+            }
             identity = 'binder' + identity; // if $('thing').binder('identity', 'event', callback)
             if (!$(this).data(identity)) {
                 if (typeof event_name === 'function') { // if $('thing').binder('identity', callback)
@@ -34,8 +38,18 @@
         return $.binder.callbacks.push(cb);
     };
 
-    $.binder.ajax = function () {
+    $.binder.ajaxing = false;
+    $.binder.ajaxApplied = false;
+    $.binder.ajax = function (status) {
+        $.binder.ajaxing = status;
+        if ($.binder.ajaxApplied) {
+            return;
+        }
+        $.binder.ajaxApplied = true;
         $(document).ajaxComplete(function (event, jqXHR, ajaxOptions) {
+            if (!$.binder.ajaxing) {
+                return;
+            }
             if (!ajaxOptions.skipBinder) {
                 $($.binder.run);
             }
