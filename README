@@ -19,11 +19,11 @@ $('a.foo2').binder('my identity', function () {
 ``
 
 also
-``
+```
 $('.z2').binder(function () {
     
     $('.other').tipsy(); // ...
 });
-``
+```
 
 although, nothing is stopping you from using $('body').on('click', '.selector', callback); this is just maybe easier for some people
