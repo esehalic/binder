@@ -6,9 +6,7 @@ $('a.foo').binder('click', callback); // this will use a.foo as identity so maki
 
 to avoid that, use it like this
 
-```
 $('a.foo').binder('my identiy', 'click', callback);
-```
 
 you can also write your own stuff like, but it's not recommended
 
