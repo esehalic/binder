@@ -1,8 +1,9 @@
 By using 
 
 ```
-$('a.foo').binder('click', callback); // this will use a.foo as identity so making another $('a.foo') call will not work
+$('a.foo').binder('click', callback);
 ```
+this will use a.foo as identity so making another $('a.foo') call will not work
 
 to avoid that, use it like this
 
