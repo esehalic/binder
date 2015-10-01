@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Testing</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="jquery.binder.js"></script>
+    <script src="example.js"></script>
+    <style type="text/css">
+        .color-red {
+            display:block;
+            cursor:pointer;
+            text-decoration: underline;
+        }
+        button {
+            display:block;
+        }
+    </style>
+</head>
+
+<body>
+<p>click on links</p>
+    <div>
+        <button class="add-link" type="button">Add link programatically</button>
+        <a class="color-red">cool #0</a>
+    </div>
+        <br />
+        <br />
+     <div>
+        <button class="add-ajax" type="button">Add ajax response</button>
+     
+    </div>
+    <script type="text/javascript">
+        $($.binder.run); // run binder at the end of the page, always
+    </script>
+</body>
+
+</html>
