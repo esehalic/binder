@@ -1,0 +1,26 @@
+{
+  "name": "binder",
+  "version": "1",
+  "homepage": "https://github.com/esehalic/binder",
+  "authors": [
+    "esehalic@github.com"
+  ],
+  "description": "jquery plugin that allows re-binding of the javascript events/initializations after new html content is injected via ajax or via other method",
+  "main": "jquery.binder.js",
+  "keywords": [
+    "binder",
+    "binding",
+    "re-bind"
+  ],
+  "license": "APACHE",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
