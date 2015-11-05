@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     $('.color-red').binder('click', function (e) {
-         $(this).css('color', 'red');
+         $(this).css('color', 'red'); // it is always important to use $(this), without that the bindings will be incorrectly placed
          e.preventDefault();
          console.log('color-red-click');
     });
