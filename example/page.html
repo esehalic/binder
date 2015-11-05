@@ -3,9 +3,7 @@
 
 <head>
     <title>Testing</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="jquery.binder.js"></script>
-    <script src="example.js"></script>
+   
     <style type="text/css">
         .color-red {
             display:block;
@@ -30,8 +28,11 @@
         <button class="add-ajax" type="button">Add ajax response</button>
      
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../jquery.binder.js"></script>
+    <script src="script.js"></script>
     <script type="text/javascript">
-        $($.binder.run); // run binder at the end of the page, always
+        $($.binder.run); // binder.run must be placed last to run
     </script>
 </body>
 
