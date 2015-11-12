@@ -2,6 +2,9 @@
     'use strict';
     var callbackCache = [];
     $.fn.binder = function (identity, event_name, handler) {
+        // identity='id of the operation', event_name='click', handler=callback
+        // identity=undefined, event_name='click', handler=callback
+        // identity=undefined, event_name=undefined, handler=callback
         var thatSelector = this.selector;
         return this.each(function (e) {
             if ($.isFunction(event_name)) { // if $('thing').binder('click', callback);
@@ -10,6 +13,7 @@
                 identity = true;
             }
             if ($.isFunction(identity)) { // if $('thing').binder(callback);
+                event_name = undefined;
                 handler = identity;
                 identity = true;
             }
@@ -23,12 +27,12 @@
             }
 
             if (!$.binder.keyedCallbacks[identity]) {
-                identity = 'binder' + identity; // if $('thing').binder('identity', 'event', callback)
+                identity = 'binder' + identity;
                 $.binder.keyedCallbacks[identity] = [thatSelector, identity, event_name, handler];
             }
             if (!$(this).data(identity)) {
-                if (typeof event_name === 'function') { // if $('thing').binder('identity', callback)
-                    $.proxy(event_name, $(this).data(identity, true))(e);
+                if (event_name === undefined) {
+                    $.proxy(handler, $(this).data(identity, true))(e);
                 } else {
                     $(this).bind(event_name, handler).data(identity, true);
                 }

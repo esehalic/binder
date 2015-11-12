@@ -23,6 +23,11 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+    $('.color-red').binder(function () {
+        $(this).css('color', 'green');
+        console.log('color-greened');
+    });
+
      $('.add-ajax').binder('click', function (e) {
         var that = this;
         $.ajax({
