@@ -30,11 +30,12 @@
                 identity = 'binder' + identity;
                 $.binder.keyedCallbacks[identity] = [thatSelector, identity, event_name, handler];
             }
-            if (!$(this).data(identity)) {
+
+            if (!$(this).attr(identity)) {
                 if (event_name === undefined) {
-                    $.proxy(handler, $(this).data(identity, true))(e);
+                    $.proxy(handler, $(this).attr(identity, true))(e);
                 } else {
-                    $(this).bind(event_name, handler).data(identity, true);
+                    $(this).bind(event_name, handler).attr(identity, true);
                 }
             }
         });
