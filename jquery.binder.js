@@ -23,7 +23,7 @@
                 id = callbackCache.push(handler);
             }
             if (identity === true) {
-                identity = thatSelector + id;
+                identity = id;
             }
 
             if (!$.binder.keyedCallbacks[identity]) {
