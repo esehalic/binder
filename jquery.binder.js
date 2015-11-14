@@ -33,9 +33,9 @@
 
             if (!$(this).attr(identity)) {
                 if (event_name === undefined) {
-                    $.proxy(handler, $(this).attr(identity, true))(e);
+                    $.proxy(handler, $(this).attr(identity, '1'))(e);
                 } else {
-                    $(this).bind(event_name, handler).attr(identity, true);
+                    $(this).bind(event_name, handler).attr(identity, '1');
                 }
             }
         });
