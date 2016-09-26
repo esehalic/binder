@@ -1,36 +1,35 @@
 (function ($) {
     'use strict';
     var callbackCache = [];
-    $.fn.binder = function (identity, event_name, handler) {
-        // identity='id of the operation', event_name='click', handler=callback
-        // identity=undefined, event_name='click', handler=callback
-        // identity=undefined, event_name=undefined, handler=callback
+    $.fn.binder = function (pidentity, event_name, handler) {
+        // pidentity='id of the operation', event_name='click', handler=callback
+        // pidentity=undefined, event_name='click', handler=callback
+        // pidentity=undefined, event_name=undefined, handler=callback
         var thatSelector = this.selector;
+        if ($.isFunction(event_name)) { // if $('thing').binder('click', callback);
+            handler = event_name;
+            event_name = pidentity;
+            pidentity = true;
+        }
+        if ($.isFunction(pidentity)) { // if $('thing').binder(callback);
+            event_name = undefined;
+            handler = pidentity;
+            pidentity = true;
+        }
+
+        var id = callbackCache.indexOf(handler);
+        if (id === -1) {
+            id = callbackCache.push(handler);
+        }
+        if (pidentity === true) {
+            pidentity = id;
+        }
         return this.each(function (e) {
-            if ($.isFunction(event_name)) { // if $('thing').binder('click', callback);
-                handler = event_name;
-                event_name = identity;
-                identity = true;
-            }
-            if ($.isFunction(identity)) { // if $('thing').binder(callback);
-                event_name = undefined;
-                handler = identity;
-                identity = true;
-            }
-
-            var id = callbackCache.indexOf(handler);
-            if (id === -1) {
-                id = callbackCache.push(handler);
-            }
-            if (identity === true) {
-                identity = id;
-            }
-
+            var identity = pidentity;
             if (!$.binder.keyedCallbacks[identity]) {
                 identity = 'binder' + identity;
                 $.binder.keyedCallbacks[identity] = [thatSelector, identity, event_name, handler];
             }
-
             if (!$(this).attr(identity)) {
                 if (event_name === undefined) {
                     $.proxy(handler, $(this).attr(identity, '1'))(e);
