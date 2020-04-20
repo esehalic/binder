@@ -24,12 +24,12 @@
         if (pidentity === true) {
             pidentity = id;
         }
+        var identity = pidentity;
+        if (!$.binder.keyedCallbacks[identity]) {
+            identity = 'binder' + identity;
+            $.binder.keyedCallbacks[identity] = [thatSelector, identity, event_name, handler];
+        }
         return this.each(function (e) {
-            var identity = pidentity;
-            if (!$.binder.keyedCallbacks[identity]) {
-                identity = 'binder' + identity;
-                $.binder.keyedCallbacks[identity] = [thatSelector, identity, event_name, handler];
-            }
             if (!$(this).attr(identity)) {
                 if (event_name === undefined) {
                     $.proxy(handler, $(this).attr(identity, '1'))(e);
